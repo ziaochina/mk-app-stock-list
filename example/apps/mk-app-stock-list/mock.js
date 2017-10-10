@@ -7,7 +7,7 @@ import { fetch } from 'mk-utils'
 
 const mockData = fetch.mockData
 
-function initStocks() {
+function initMockData() {
     if (mockData.stockTypes && mockData.stockTypes.length > 0)
         return
 
@@ -175,22 +175,23 @@ function initStocks() {
 
 
 fetch.mock('/v1/stock/init', (option) => {
+    initMockData()
     var ret = query(option)
     ret.value.stockTypes = mockData.stockTypes
     return ret
 })
 
 fetch.mock('/v1/stockType/query', (option) => {
-    initStocks()
+    initMockData()
     return mockData.stockTypes
 })
 
 fetch.mock('/v1/stock/query', (option) => {
+    initMockData()
     return query(option)
 })
 
 function query(option) {
-    initStocks()
 
     const { pagination, filter } = option
 
@@ -239,6 +240,7 @@ function query(option) {
 
 
 fetch.mock('/v1/stockType/del', (option) => {
+    initMockData()
     const del = (types) => {
         types.forEach((t, index) => {
             if (t.id == option.id) {
@@ -256,6 +258,7 @@ fetch.mock('/v1/stockType/del', (option) => {
 
 
 fetch.mock('/v1/stock/del', (option) => {
+    initMockData()
     option.ids.forEach(id => {
         let index = mockData.stocks.findIndex(o => o.id == id)
 
@@ -268,6 +271,7 @@ fetch.mock('/v1/stock/del', (option) => {
 
 
 fetch.mock('/v1/stock/disable', (option) => {
+    initMockData()
     option.ids.forEach(id => {
         let stock = mockData.stocks.find(o => o.id == id)
         stock.status = 1
@@ -277,6 +281,7 @@ fetch.mock('/v1/stock/disable', (option) => {
 })
 
 fetch.mock('/v1/stock/enable', (option) => {
+    initMockData()
     option.ids.forEach(id => {
         let stock = mockData.stocks.find(o => o.id == id)
         stock.status = 0
