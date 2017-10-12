@@ -3,10 +3,14 @@ import * as mkComponents from 'mk-component'
 import myConfig  from './config'
 
 import mk_app_stock_list from './apps/mk-app-stock-list/index.js'
+import mk_app_stock_type_card_test from './apps/mk-app-stock-type-card/apps/mk-app-stock-type-card-test/index.js'
+import mk_app_stock_type_card from './apps/mk-app-stock-type-card/index.js'
 
 const apps = {
 		
-	[mk_app_stock_list.name]: mk_app_stock_list,
+	[mk_app_stock_list.name]: mk_app_stock_list,	
+	[mk_app_stock_type_card_test.name]: mk_app_stock_type_card_test,	
+	[mk_app_stock_type_card.name]: mk_app_stock_type_card,
 }
 
 apps.config = (options) => {

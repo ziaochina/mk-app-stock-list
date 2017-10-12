@@ -13,9 +13,9 @@
   "license": "MIT",
   "dependencies": {
     "mk-component": "^1.0.35",
-    "mk-meta-engine": "^1.0.59",
-    "mk-utils": "^1.0.44",
-    "moment": "^2.18.1",
+    "mk-meta-engine": "^1.0.60",
+    "mk-utils": "^1.0.45",
+    "moment": "^2.19.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
@@ -37,7 +37,7 @@
     "less-loader": "^4.0.5",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
-    "webpack": "^3.6.0",
+    "webpack": "^3.7.1",
     "webpack-dev-server": "^2.9.1"
   }
 }

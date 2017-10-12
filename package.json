@@ -1,0 +1,23 @@
+{
+  "name": "mk-app-stock-list",
+  "version": "1.0.0",
+  "description": "存货列表",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziaochina/mk-app-stock-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ziaochina/mk-app-stock-list/issues"
+  },
+  "homepage": "https://github.com/ziaochina/mk-app-stock-list#readme"
+}
