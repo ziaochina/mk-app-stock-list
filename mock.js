@@ -594,7 +594,7 @@ function initMockData() {
 }
 
 
-fetch.mock('/v1/stock/init', (option) => {
+fetch.mock('/v1/stockList/init', (option) => {
     initMockData()
     var ret = query(option)
     ret.value.stockTypes = mockData.stockTypes
@@ -606,13 +606,12 @@ fetch.mock('/v1/stockType/query', (option) => {
     return mockData.stockTypes
 })
 
-fetch.mock('/v1/stock/query', (option) => {
+fetch.mock('/v1/stockList/query', (option) => {
     initMockData()
     return query(option)
 })
 
 function query(option) {
-
     const { pagination, filter } = option
 
     var data = mockData.stocks
@@ -620,6 +619,8 @@ function query(option) {
     if (filter) {
         if (filter.type && filter.type.id) {
             data = data.filter(o => {
+                if (!o.type || !o.type.id)
+                    return true
                 let typeId = o.type.id + ''
                 return typeId.substr(0, filter.type.id.toString().length) == filter.type.id
             })
@@ -630,10 +631,10 @@ function query(option) {
                 || o.name.indexOf(filter.search) != -1)
         }
 
-        if(filter.showDisable !== true) {
-             data = data.filter(o => !o.disable)
+        if (filter.showDisable !== true) {
+            data = data.filter(o => !o.disable)
         }
-            
+
     }
 
     var current = pagination.current
@@ -679,7 +680,7 @@ fetch.mock('/v1/stockType/del', (option) => {
 })
 
 
-fetch.mock('/v1/stock/del', (option) => {
+fetch.mock('/v1/stockList/del', (option) => {
     initMockData()
     option.ids.forEach(id => {
         let index = mockData.stocks.findIndex(o => o.id == id)
@@ -692,7 +693,7 @@ fetch.mock('/v1/stock/del', (option) => {
 })
 
 
-fetch.mock('/v1/stock/disable', (option) => {
+fetch.mock('/v1/stockList/disable', (option) => {
     initMockData()
     option.ids.forEach(id => {
         let stock = mockData.stocks.find(o => o.id == id)
@@ -702,7 +703,7 @@ fetch.mock('/v1/stock/disable', (option) => {
     return { result: true, value: true }
 })
 
-fetch.mock('/v1/stock/enable', (option) => {
+fetch.mock('/v1/stockList/enable', (option) => {
     initMockData()
     option.ids.forEach(id => {
         let stock = mockData.stocks.find(o => o.id == id)

@@ -6,12 +6,12 @@
 import { fetch } from 'mk-utils'
 
 export default {
-    stock: {
-        init: (option) => fetch.post('/v1/stock/init', option),
-        query: (option) => fetch.post('/v1/stock/query', option),
-        del: (option)  => fetch.post('/v1/stock/del', option),
-        disable: (option)  => fetch.post('/v1/stock/disable', option),
-        enable: (option)  => fetch.post('/v1/stock/enable', option),
+    stockList: {
+        init: (option) => fetch.post('/v1/stockList/init', option),
+        query: (option) => fetch.post('/v1/stockList/query', option),
+        del: (option)  => fetch.post('/v1/stockList/del', option),
+        disable: (option)  => fetch.post('/v1/stockList/disable', option),
+        enable: (option)  => fetch.post('/v1/stockList/enable', option),
     },
     stockType: {
         del: (option) => fetch.post('/v1/stockType/del', option)
