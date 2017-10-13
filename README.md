@@ -1,1 +1,0 @@
-# mk-app-stock-list
