@@ -303,7 +303,7 @@ export function getMeta() {
 						component: 'DataGrid.Cell',
 						className: 'mk-app-stock-list-cell-right',
 						_power: '({rowIndex})=>rowIndex',
-						children: '{{$numberFormat(data.list[_rowIndex].buyingPrice,2)}}',
+						children: '{{$numberFormat(data.list[_rowIndex].referPuPrice,2)}}',
 					}
 				}, {
 					name: 'cost',
@@ -321,7 +321,7 @@ export function getMeta() {
 						component: 'DataGrid.Cell',
 						className: 'mk-app-stock-list-cell-right',
 						_power: '({rowIndex})=>rowIndex',
-						children: '{{$numberFormat(data.list[_rowIndex].cost,2)}}',
+						children: '{{$numberFormat(data.list[_rowIndex].referCost,2)}}',
 					}
 				}]
 			}, {

@@ -23,7 +23,7 @@ class action {
     }
 
     load = async (pagination, filter) => {
-        const response = await this.webapi.stock.init({ pagination, filter })
+        const response = await this.webapi.stockList.init({ pagination, filter })
         response.filter = filter
         this.injections.reduce('load', response)
     }
@@ -154,7 +154,7 @@ class action {
             return
 
         const ids = selectRows.map(o => o.get('id')).toJS()
-        await this.webapi.stock.del({ ids })
+        await this.webapi.stockList.del({ ids })
         this.metaAction.toast('success', '删除成功')
         this.reload()
     }
@@ -175,7 +175,7 @@ class action {
         }
 
         const ids = selectRows.map(o => o.get('id')).toJS()
-        await this.webapi.stock.disable({ ids })
+        await this.webapi.stockList.disable({ ids })
         this.metaAction.toast('success', '停用成功')
         this.reload()
     }
@@ -196,7 +196,7 @@ class action {
         }
 
         const ids = selectRows.map(o => o.get('id')).toJS()
-        await this.webapi.stock.enable({ ids })
+        await this.webapi.stockList.enable({ ids })
         this.metaAction.toast('success', '启用成功')
         this.reload()
     }
@@ -211,7 +211,7 @@ class action {
             return
 
         const ids = [id]
-        await this.webapi.stock.del({ ids })
+        await this.webapi.stockList.del({ ids })
         this.metaAction.toast('success', '删除成功')
         this.reload()
     }
@@ -286,31 +286,19 @@ class action {
     }
 
     add = async () => {
+        /*
         const type = this.metaAction.gf('data.filter.type')
         if (!type) {
             this.metaAction.toast('error', '请选中一个分类')
             return
-        }
+        }*/
 
         if (!this.config.apps['mk-app-stock-card']) {
             throw '依赖mk-app-stock-card app,请使用mk clone mk-app-stock-card命令添加'
         }
 
-        //打开portal页签
-        utils.history.pushChildApp('mk-app-portal', 'mk-app-stock-card')
-
-        /*
-        const ret = await this.metaAction.modal('show', {
-            title: '新增',
-            children: this.metaAction.loadApp('mk-app-stock-card', {
-                store: this.component.props.store,
-                typeId: type
-            })
-        })
-
-        if (ret) {
-            this.reload()
-        }*/
+        this.component.props.setPortalContent &&
+            this.component.props.setPortalContent('存货卡片', 'mk-app-stock-card')
     }
 
     modify = (id) => async () => {
@@ -318,17 +306,9 @@ class action {
             throw '依赖mk-app-stock-card app,请使用mk clone mk-app-stock-card命令添加'
         }
 
-        const ret = await this.metaAction.modal('show', {
-            title: '修改',
-            children: this.metaAction.loadApp('mk-app-stock-card', {
-                store: this.component.props.store,
-                id
-            })
-        })
+        this.component.props.setPortalContent &&
+            this.component.props.setPortalContent('存货卡片', 'mk-app-stock-card',{stockId: id})
 
-        if (ret) {
-            this.reload()
-        }
     }
 
     print = () => {
