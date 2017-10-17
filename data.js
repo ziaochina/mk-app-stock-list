@@ -157,7 +157,7 @@ export function getMeta() {
 				rowHeight: 35,
 				enableSequence: true,
 				startSequence: '{{(data.pagination.current-1)*data.pagination.pageSize + 1}}',
-				rowsCount: "{{$getListRowsCount()}}",
+				rowsCount: "{{data.list ? data.list.length: 0}}",
 				columns: [{
 					name: 'select',
 					component: 'DataGrid.Column',

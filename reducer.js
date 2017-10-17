@@ -2,6 +2,7 @@ import { Map, fromJS } from 'immutable'
 import { reducer as MetaReducer } from 'mk-meta-engine'
 import config from './config'
 import { getInitState } from './data'
+import extend from './extend'
 
 class reducer {
     constructor(option) {
@@ -21,25 +22,12 @@ class reducer {
         }
         return state
     }
-
-
-    selectAll = (state, checked) => {
-        var lst = this.metaReducer.gf(state, 'data.list')
-
-        if (!lst || lst.size == 0)
-            return state
-
-        for (let i = 0; i < lst.size; i++) {
-            state = this.metaReducer.sf(state, `data.list.${i}.selected`, checked)
-        }
-
-        return state
-    }
 }
 
 export default function creator(option) {
     const metaReducer = new MetaReducer(option),
-        o = new reducer({ ...option, metaReducer })
+        extendReducer = extend.reducerCreator({ ...option, metaReducer }),
+        o = new reducer({ ...option, metaReducer, extendReducer })
 
-    return { ...metaReducer, ...o }
+    return { ...metaReducer, ...extendReducer.gridReducer, ...o }
 }
