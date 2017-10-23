@@ -12,14 +12,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "mk-aar-grid": "^1.0.6",
+    "mk-aar-grid": "^1.0.7",
     "mk-component": "^1.0.37",
     "mk-meta-engine": "^1.0.60",
     "mk-utils": "^1.0.48",
     "moment": "^2.19.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "underscore": "^1.8.3"
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
